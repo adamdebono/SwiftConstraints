@@ -1,6 +1,7 @@
+
 import UIKit
 
-extension UIView {
+public extension UIView {
     
     /**
         Adds a constraint to a subview.
