@@ -17,7 +17,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(toItem item: UIView, attribute: NSLayoutAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = UILayoutPriorityRequired) -> NSLayoutConstraint {
+    func addConstraint(toItem item: UIView, attribute: NSLayoutAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         var firstView, secondView: UIView
         switch attribute {
         case .top, .leading, .centerX, .centerY:
@@ -44,7 +44,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(fillView item: UIView, constant: CGFloat = 0, priority: UILayoutPriority = UILayoutPriorityRequired) -> [NSLayoutConstraint] {
+    func addConstraints(fillView item: UIView, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         
         constraints.append(self.addConstraint(toItem: item, attribute: .leading, constant: constant, priority: priority))
@@ -72,7 +72,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(withItems firstItem: UIView, andItem secondItem: UIView, attribute: NSLayoutAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = UILayoutPriorityRequired) -> NSLayoutConstraint {
+    func addConstraint(withItems firstItem: UIView, andItem secondItem: UIView, attribute: NSLayoutAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         var firstView, secondView: UIView
         switch attribute {
         case .top, .left:
@@ -103,7 +103,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(betweenItems item: UIView, toItem: UIView, axis: UILayoutConstraintAxis, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = UILayoutPriorityRequired) -> NSLayoutConstraint {
+    func addConstraint(betweenItems item: UIView, toItem: UIView, axis: UILayoutConstraintAxis, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         var firstAttribute, secondAttribute: NSLayoutAttribute
         switch axis {
@@ -134,7 +134,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(toSelf attribute: NSLayoutAttribute, toAttribute: NSLayoutAttribute = .notAnAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = UILayoutPriorityRequired) -> NSLayoutConstraint {
+    func addConstraint(toSelf attribute: NSLayoutAttribute, toAttribute: NSLayoutAttribute = .notAnAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let toItem: UIView? = toAttribute == .notAnAttribute ? nil : self
         let constraint = NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relatedBy, toItem: toItem, attribute: toAttribute, multiplier: multiplier, constant: constant)
         constraint.priority = priority
@@ -150,7 +150,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(equalDimensions items: [UIView], axis: UILayoutConstraintAxis, priority: UILayoutPriority = UILayoutPriorityRequired) -> [NSLayoutConstraint] {
+    func addConstraints(equalDimensions items: [UIView], axis: UILayoutConstraintAxis, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         guard let firstView = items.first else {
             return []
         }
@@ -181,7 +181,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(alignItems items: [UIView], attribute: NSLayoutAttribute, priority: UILayoutPriority = UILayoutPriorityRequired) -> [NSLayoutConstraint] {
+    func addConstraints(alignItems items: [UIView], attribute: NSLayoutAttribute, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         guard let firstView = items.first else {
             return []
         }
@@ -213,7 +213,7 @@ public extension UIView {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(equallySpaced items: [UIView], axis: UILayoutConstraintAxis, leftView: UIView? = nil, rightView: UIView? = nil, constant: CGFloat = 0, priority: UILayoutPriority = UILayoutPriorityRequired) -> [NSLayoutConstraint] {
+    func addConstraints(equallySpaced items: [UIView], axis: UILayoutConstraintAxis, leftView: UIView? = nil, rightView: UIView? = nil, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         
         guard let firstView = items.first, let lastView = items.last else {
             return []
