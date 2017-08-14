@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "SwiftConstraints"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "Simple shortcuts for AutoLayout"
-  
+
   s.homepage     = "https://github.com/adamdebono/SwiftConstraints"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "Adam Debono" => "me@adamdebono.com" }
