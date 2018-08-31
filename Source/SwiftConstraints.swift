@@ -40,7 +40,7 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(toItem item: AutoLayoutConstrained, attribute: NSLayoutAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+    func addConstraint(toItem item: AutoLayoutConstrained, attribute: NSLayoutConstraint.Attribute, relatedBy: NSLayoutConstraint.Relation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         var firstView, secondView: AutoLayoutConstrained
         switch attribute {
         case .top, .leading, .centerX, .centerY:
@@ -95,7 +95,7 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(withItems firstItem: AutoLayoutConstrained, andItem secondItem: AutoLayoutConstrained, attribute: NSLayoutAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+    func addConstraint(withItems firstItem: AutoLayoutConstrained, andItem secondItem: AutoLayoutConstrained, attribute: NSLayoutConstraint.Attribute, relatedBy: NSLayoutConstraint.Relation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         var firstView, secondView: AutoLayoutConstrained
         switch attribute {
         case .top, .left:
@@ -126,9 +126,9 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(betweenItems item: AutoLayoutConstrained, toItem: AutoLayoutConstrained, axis: UILayoutConstraintAxis, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+    func addConstraint(betweenItems item: AutoLayoutConstrained, toItem: AutoLayoutConstrained, axis: NSLayoutConstraint.Axis, relatedBy: NSLayoutConstraint.Relation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
-        var firstAttribute, secondAttribute: NSLayoutAttribute
+        var firstAttribute, secondAttribute: NSLayoutConstraint.Attribute
         switch axis {
         case .horizontal:
             firstAttribute = .left
@@ -157,7 +157,7 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraint
     @discardableResult
-    func addConstraint(toSelf attribute: NSLayoutAttribute, toAttribute: NSLayoutAttribute = .notAnAttribute, relatedBy: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+    func addConstraint(toSelf attribute: NSLayoutConstraint.Attribute, toAttribute: NSLayoutConstraint.Attribute = .notAnAttribute, relatedBy: NSLayoutConstraint.Relation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let toItem: AutoLayoutConstrained? = toAttribute == .notAnAttribute ? nil : self
         let constraint = NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relatedBy, toItem: toItem, attribute: toAttribute, multiplier: multiplier, constant: constant)
         constraint.priority = priority
@@ -173,12 +173,12 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(equalDimensions items: [AutoLayoutConstrained], axis: UILayoutConstraintAxis, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+    func addConstraints(equalDimensions items: [AutoLayoutConstrained], axis: NSLayoutConstraint.Axis, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         guard let firstView = items.first else {
             return []
         }
         
-        let attribute: NSLayoutAttribute
+        let attribute: NSLayoutConstraint.Attribute
         switch axis {
         case .horizontal:
             attribute = .width
@@ -204,7 +204,7 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(alignItems items: [AutoLayoutConstrained], attribute: NSLayoutAttribute, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+    func addConstraints(alignItems items: [AutoLayoutConstrained], attribute: NSLayoutConstraint.Attribute, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         guard let firstView = items.first else {
             return []
         }
@@ -236,7 +236,7 @@ public extension AutoLayoutConstrained {
     ///
     /// - returns: The added layout constraints
     @discardableResult
-    func addConstraints(equallySpaced items: [AutoLayoutConstrained], axis: UILayoutConstraintAxis, leftView: AutoLayoutConstrained? = nil, rightView: AutoLayoutConstrained? = nil, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+    func addConstraints(equallySpaced items: [AutoLayoutConstrained], axis: NSLayoutConstraint.Axis, leftView: AutoLayoutConstrained? = nil, rightView: AutoLayoutConstrained? = nil, constant: CGFloat = 0, priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         
         guard let firstView = items.first, let lastView = items.last else {
             return []
@@ -247,7 +247,7 @@ public extension AutoLayoutConstrained {
         if let leftView = leftView {
             constraints.append(self.addConstraint(betweenItems: leftView, toItem: firstView, axis: axis, relatedBy: .equal, multiplier: 1, constant: constant, priority: priority))
         } else {
-            let attribute: NSLayoutAttribute
+            let attribute: NSLayoutConstraint.Attribute
             switch axis {
             case .horizontal:
                 attribute = .leading
@@ -259,7 +259,7 @@ public extension AutoLayoutConstrained {
         if let rightView = rightView {
             constraints.append(self.addConstraint(betweenItems: lastView, toItem: rightView, axis: axis, relatedBy: .equal, multiplier: 1, constant: constant, priority: priority))
         } else {
-            let attribute: NSLayoutAttribute
+            let attribute: NSLayoutConstraint.Attribute
             switch axis {
             case .horizontal:
                 attribute = .trailing
